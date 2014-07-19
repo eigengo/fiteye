@@ -10,13 +10,23 @@ import org.eigengo.fiteye.R
 
 class MenuLogActivity extends Activity {
 
-
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
 
     getWindow.requestFeature(WindowUtils.FEATURE_VOICE_COMMANDS)
+    setContentView(R.layout.capture)
   }
 
+//  override def onAttachedToWindow(): Unit = {
+//    super.onAttachedToWindow()
+//
+//    openOptionsMenu()
+//  }
+
+  override def onCreateOptionsMenu(menu: Menu): Boolean = {
+    getMenuInflater.inflate(R.menu.log_meal, menu)
+    true
+  }
 
   override def onCreatePanelMenu(featureId: Int, menu: Menu): Boolean = {
     if (featureId == WindowUtils.FEATURE_VOICE_COMMANDS) {
@@ -25,16 +35,10 @@ class MenuLogActivity extends Activity {
     } else super.onCreatePanelMenu(featureId, menu)
   }
 
-  override def onCreateOptionsMenu(menu: Menu): Boolean = {
-    val inflater = getMenuInflater
-    inflater.inflate(R.menu.log_meal, menu)
-    true
-  }
-
-  override def onOptionsItemSelected(item: MenuItem): Boolean = item.getItemId match {
-    case R.id.speak   => Toast.makeText(getApplicationContext, "Listen to the user for voice input", Toast.LENGTH_LONG).show(); true
-    case R.id.barcode => getApplication.startActivity(new Intent(this, classOf[LogActivity])); true
-    case R.id.picture => Toast.makeText(getApplicationContext, "Will take a picture, attempt to classify it on the server", Toast.LENGTH_LONG).show(); true
-    case _            => super.onOptionsItemSelected(item)
+  override def onMenuItemSelected(featureId: Int, item: MenuItem): Boolean = item.getItemId match {
+    case R.id.log_meal_speak   => Toast.makeText(getApplicationContext, "Listen to the user for voice input", Toast.LENGTH_LONG).show(); true
+    case R.id.log_meal_barcode => getApplication.startActivity(new Intent(this, classOf[LogActivity])); true
+    case R.id.log_meal_picture => Toast.makeText(getApplicationContext, "Will take a picture, attempt to classify it on the server", Toast.LENGTH_LONG).show(); true
+    case _                     => super.onOptionsItemSelected(item)
   }
 }
