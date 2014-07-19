@@ -15,9 +15,9 @@ import org.eigengo.fiteye.R;
 
 import java.io.IOException;
 
-public final class CaptureActivity extends Activity implements SurfaceHolder.Callback {
+public final class LogActivity extends Activity implements SurfaceHolder.Callback {
 
-    private static final String TAG = CaptureActivity.class.getSimpleName();
+    private static final String TAG = LogActivity.class.getSimpleName();
     private static final String SCAN_ACTION = "com.google.zxing.client.android.SCAN";
 
     private boolean hasSurface;

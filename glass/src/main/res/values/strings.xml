@@ -2,4 +2,8 @@
 <resources>
     <string name="app_name">Fit Eye</string>
     <string name="stop">Stop</string>
+    <string name="speak">Speak</string>
+    <string name="picture">Picture</string>
+    <string name="barcode">Barcode</string>
+    <string name="log_meal">Log meal</string>
 </resources>

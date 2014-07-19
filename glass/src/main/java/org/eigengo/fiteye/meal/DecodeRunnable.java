@@ -37,7 +37,7 @@ final class DecodeRunnable implements Runnable, Camera.PreviewCallback {
 
     private static final String TAG = DecodeRunnable.class.getSimpleName();
 
-    private final CaptureActivity activity;
+    private final LogActivity activity;
     private final Camera camera;
     private final int height;
     private final int width;
@@ -46,7 +46,7 @@ final class DecodeRunnable implements Runnable, Camera.PreviewCallback {
     private Handler handler;
     private final CountDownLatch handlerInitLatch;
 
-    DecodeRunnable(CaptureActivity activity, Camera camera) {
+    DecodeRunnable(LogActivity activity, Camera camera) {
         this.activity = activity;
         this.camera = camera;
         Camera.Parameters parameters = camera.getParameters();

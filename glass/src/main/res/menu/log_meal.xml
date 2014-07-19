@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/speak"
+          android:title="@string/speak"
+          android:icon="@android:drawable/ic_btn_speak_now" />
+
+    <item android:id="@+id/barcode"
+          android:title="@string/barcode"
+          android:icon="@drawable/ic_barcode" />
+
+    <item android:id="@+id/picture"
+          android:title="@string/picture"
+          android:icon="@android:drawable/ic_menu_camera" />
+
+</menu>
