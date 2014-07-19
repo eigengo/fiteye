@@ -24,8 +24,6 @@ import com.google.zxing.client.android.camera.CameraConfigurationUtils;
  */
 final class CameraConfigurationManager {
 
-    private static final String TAG = "CameraConfiguration";
-
     static final int ZOOM = 2;
 
     private CameraConfigurationManager() {
@@ -33,8 +31,8 @@ final class CameraConfigurationManager {
 
     static void configure(Camera camera) {
         Camera.Parameters parameters = camera.getParameters();
-        //parameters.setPreviewSize(1280, 720);
-        parameters.setPreviewSize(1920, 1080);
+        parameters.setPreviewSize(1280, 720);
+        //parameters.setPreviewSize(1920, 1080);
         configureAdvanced(parameters);
         camera.setParameters(parameters);
     }
@@ -44,6 +42,7 @@ final class CameraConfigurationManager {
         CameraConfigurationUtils.setBarcodeSceneMode(parameters);
         CameraConfigurationUtils.setVideoStabilization(parameters);
         CameraConfigurationUtils.setMetering(parameters);
+        CameraConfigurationUtils.setFocusArea(parameters);
         CameraConfigurationUtils.setZoom(parameters, ZOOM);
     }
 
