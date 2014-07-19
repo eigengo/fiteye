@@ -2,4 +2,6 @@
 
 <resources>
     <color name="black">#ff000000</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
 </resources>
