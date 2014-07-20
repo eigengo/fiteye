@@ -23,6 +23,7 @@ import android.os.Message;
 import android.util.Log;
 import com.google.zxing.*;
 import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.oned.EAN13Reader;
 import org.eigengo.fiteye.R;
 
 import java.util.Arrays;
@@ -37,7 +38,7 @@ final class DecodeRunnable implements Runnable, Camera.PreviewCallback {
 
     private static final String TAG = DecodeRunnable.class.getSimpleName();
 
-    private final LogActivity activity;
+    private final BarcodeActivity activity;
     private final Camera camera;
     private final int height;
     private final int width;
@@ -46,7 +47,7 @@ final class DecodeRunnable implements Runnable, Camera.PreviewCallback {
     private Handler handler;
     private final CountDownLatch handlerInitLatch;
 
-    DecodeRunnable(LogActivity activity, Camera camera) {
+    DecodeRunnable(BarcodeActivity activity, Camera camera) {
         this.activity = activity;
         this.camera = camera;
         Camera.Parameters parameters = camera.getParameters();
@@ -135,26 +136,18 @@ final class DecodeRunnable implements Runnable, Camera.PreviewCallback {
 
         private void decode(byte[] data) {
             Result rawResult = null;
-            Log.i(TAG, "decode...");
 
-            int subtendedWidth = width / CameraConfigurationManager.ZOOM;
-            int subtendedHeight = height / CameraConfigurationManager.ZOOM;
-            int excessWidth = width - subtendedWidth;
-            int excessHeight = height - subtendedHeight;
-
-            //long start = System.currentTimeMillis();
-            PlanarYUVLuminanceSource source =
-                    new PlanarYUVLuminanceSource(data,
+            LuminanceSource source = new PlanarYUVLuminanceSource(data,
                             width, height,
-                            excessWidth / 2, excessHeight / 2,
-                            subtendedWidth, subtendedHeight,
+                            0, 0,
+                            width, height,
                             false);
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
             try {
-                rawResult = new MultiFormatReader().decode(bitmap, hints);
+                rawResult = new EAN13Reader().decode(bitmap, hints);
+                //rawResult = new MultiFormatReader().decode(bitmap, hints);
             } catch (ReaderException re) {
                 // continue
-                Log.e(TAG, "Did not decode", re);
             }
 
             Handler handler = getHandler();

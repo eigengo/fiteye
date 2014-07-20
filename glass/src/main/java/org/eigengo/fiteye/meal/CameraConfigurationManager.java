@@ -24,14 +24,15 @@ import com.google.zxing.client.android.camera.CameraConfigurationUtils;
  */
 final class CameraConfigurationManager {
 
-    static final int ZOOM = 2;
+    static final int ZOOM = 5;
 
     private CameraConfigurationManager() {
     }
 
     static void configure(Camera camera) {
         Camera.Parameters parameters = camera.getParameters();
-        parameters.setPreviewSize(1280, 720);
+        parameters.setPreviewSize(640, 360);
+        //parameters.setPreviewSize(1280, 720);
         //parameters.setPreviewSize(1920, 1080);
         configureAdvanced(parameters);
         camera.setParameters(parameters);
@@ -43,6 +44,8 @@ final class CameraConfigurationManager {
         CameraConfigurationUtils.setVideoStabilization(parameters);
         CameraConfigurationUtils.setMetering(parameters);
         CameraConfigurationUtils.setFocusArea(parameters);
+        CameraConfigurationUtils.setBestExposure(parameters, false);
+        CameraConfigurationUtils.setInvertColor(parameters);
         CameraConfigurationUtils.setZoom(parameters, ZOOM);
     }
 

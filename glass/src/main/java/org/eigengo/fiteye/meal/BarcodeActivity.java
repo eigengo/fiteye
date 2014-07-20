@@ -3,21 +3,22 @@ package org.eigengo.fiteye.meal;
 import android.app.Activity;
 import android.content.Intent;
 import android.hardware.Camera;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.google.zxing.Result;
-import com.google.zxing.client.result.*;
+import com.google.zxing.client.result.ParsedResult;
+import com.google.zxing.client.result.ResultParser;
 import org.eigengo.fiteye.R;
 
 import java.io.IOException;
 
-public final class LogActivity extends Activity implements SurfaceHolder.Callback {
+public final class BarcodeActivity extends Activity implements SurfaceHolder.Callback {
 
-    private static final String TAG = LogActivity.class.getSimpleName();
+    private static final String TAG = BarcodeActivity.class.getSimpleName();
     private static final String SCAN_ACTION = "com.google.zxing.client.android.SCAN";
 
     private boolean hasSurface;
@@ -154,14 +155,7 @@ public final class LogActivity extends Activity implements SurfaceHolder.Callbac
 
     private void handleResult(Result result) {
         ParsedResult parsed = ResultParser.parseResult(result);
-        Intent intent;
-        if (parsed.getType() == ParsedResultType.URI) {
-            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(((URIParsedResult) parsed).getURI()));
-        } else {
-            intent = new Intent(Intent.ACTION_WEB_SEARCH);
-            intent.putExtra("query", ((TextParsedResult) parsed).getText());
-        }
-        startActivity(intent);
+        Toast.makeText(this, parsed.getDisplayResult(), Toast.LENGTH_LONG).show();
     }
 
     private synchronized void reset() {

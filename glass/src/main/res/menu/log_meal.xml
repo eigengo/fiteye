@@ -1,36 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/log_meal_speak" android:title="@string/speak" />
-    <item android:id="@+id/log_meal_barcode" android:title="@string/barcode" />
-    <item android:id="@+id/log_meal_picture" android:title="@string/picture" />
+    <item android:id="@+id/log_meal_speak" android:title="@string/speak" android:icon="@android:drawable/ic_btn_speak_now" />
+    <item android:id="@+id/log_meal_barcode" android:title="@string/barcode" android:icon="@drawable/ic_barcode"/>
+    <item android:id="@+id/log_meal_picture" android:title="@string/picture" android:icon="@android:drawable/ic_menu_camera"/>
 
-    <!--
-    <item
-            android:id="@+id/cats_menu_item"
-            android:title="@string/show_me_cats">
-        <menu>
-            <item
-                    android:id="@+id/cheshire_menu_item"
-                    android:title="@string/cheshire" />
-            <item
-                    android:id="@+id/calico_menu_item"
-                    android:title="@string/calico" />
-        </menu>
-    </item>
-    -->
-
-    <!--
-    <item android:id="@+id/speak"
-          android:title="@string/speak"
-          android:icon="@android:drawable/ic_btn_speak_now" />
-
-    <item android:id="@+id/barcode"
-          android:title="@string/barcode"
-          android:icon="@drawable/ic_barcode" />
-
-    <item android:id="@+id/picture"
-          android:title="@string/picture"
-          android:icon="@android:drawable/ic_menu_camera" />
-    -->
 </menu>
